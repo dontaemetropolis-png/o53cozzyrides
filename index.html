@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<!-- O53CozzyRides live-map build. Host over HTTPS (Netlify, GitHub Pages, Cloudflare Pages). Tiles: CARTO/OpenStreetMap. Search: Nominatim. Routing: OSRM demo. Swap for Google Maps Platform, Mapbox or MapTiler keys before launch. Payments are simulated. -->
+<!-- O53CozzyRides live-map build. Host over HTTPS (Netlify, GitHub Pages, Cloudflare Pages). Tiles: OpenStreetMap standard tiles (light-use only; switch to a keyed provider such as MapTiler or Mapbox for launch). Search: Nominatim. Routing: OSRM demo. Swap for Google Maps Platform, Mapbox or MapTiler keys before launch. Payments are simulated. -->
 <title>O53CozzyRides – Premium Ride Comfort</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;800&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
@@ -85,7 +85,7 @@ body.lock{overflow:hidden}
 .sc{position:absolute;left:10px;bottom:10px;color:#fff;font:700 11px Manrope,system-ui,sans-serif;text-shadow:0 0 3px #000;pointer-events:none}.sc i{display:block;height:5px;border:2px solid #fff;border-top:0;margin-bottom:2px}
 .na{position:absolute;left:10px;top:10px;width:32px;height:32px;border-radius:50%;background:#1a1070;color:#fff;border:2px solid #8dff1c;display:grid;place-items:center;font:800 11px Manrope,system-ui,sans-serif;pointer-events:none}
 .mapx{isolation:isolate}#mp{width:100%;aspect-ratio:1/.9;background:#120e3d;cursor:grab}
-.leaflet-container{font-family:Manrope,system-ui,sans-serif;background:#120e3d}.leaflet-tile-pane{filter:hue-rotate(25deg) saturate(1.6) brightness(1.2)}
+.leaflet-container{font-family:Manrope,system-ui,sans-serif;background:#120e3d}.leaflet-tile-pane{filter:invert(1) hue-rotate(200deg) brightness(.92) contrast(.95) saturate(1.4)}
 .zb,.live,.na{z-index:1000}.leaflet-control-attribution{font-size:9px;background:rgba(18,14,61,.7)!important;color:#cfc9f5!important}.leaflet-control-attribution a{color:#8dff1c!important}
 .leaflet-control-scale-line{background:rgba(18,14,61,.7);color:#fff;border-color:#fff}
 .pw{position:relative}.pl{position:absolute;left:0;top:-60px;transform:translateX(-50%);white-space:nowrap;font:700 12px Manrope,system-ui,sans-serif;color:#fff;text-shadow:0 0 3px #0d0a2e,0 0 3px #0d0a2e,0 0 3px #0d0a2e}
@@ -161,7 +161,7 @@ let LM=null,MEL=null,LY=null;
 function initMap(){try{initMap0()}catch(e){S.msg="Map error: "+(e&&e.message||e)}}
 function initMap0(){if(LM||!window.L)return;MEL=document.createElement("div");MEL.id="mp";
 LM=L.map(MEL,{zoomControl:false,attributionControl:false,minZoom:9,maxZoom:19,maxBounds:[[-28.75,22.7],[-27.05,23.85]],maxBoundsViscosity:.9}).setView([C.K.lat+.01,C.K.lng+.008],14);
-const tl=L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",{subdomains:"abcd",maxZoom:19,attribution:"© OpenStreetMap contributors © CARTO"}).addTo(LM);tl.on("tileload",()=>{S.tiles=1;if(S.noTiles){S.noTiles=false;render()}});L.control.attribution({prefix:false}).addTo(LM);
+const tl=L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:"© OpenStreetMap contributors"}).addTo(LM);tl.on("tileload",()=>{S.tiles=1;if(S.noTiles){S.noTiles=false;render()}});L.control.attribution({prefix:false}).addTo(LM);
 L.control.scale({imperial:false,position:"bottomleft"}).addTo(LM);
 [C.K,C.P].forEach(c=>L.circle([c.lat,c.lng],{radius:16000,color:"#8dff1c",weight:1.5,opacity:.5,fill:false,dashArray:"8 6",interactive:false}).addTo(LM));
 LY=L.layerGroup().addTo(LM);
